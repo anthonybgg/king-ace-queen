@@ -1,32 +1,15 @@
 package com.example;
 
-public class BestStrategyByAbongu2 implements PlayerStrategy {
+public class TheRandomPlayer implements PlayerStrategy {
+    @Override
+    public boolean betAsPlayer1(Card card) { return false; }
 
     @Override
-    public boolean betAsPlayer1(Card card) {
-
-        if (card.getValue() == Card.ACE) {
-            return true;
-        } else if (card.getValue() == Card.KING)
-            return true;
-        else
-            return false;
-    }
-
-    @Override
-    public boolean callAsPlayer2(Card card) {
-
-        if (card.getValue() == Card.ACE) {
-            return true;
-        } else if (card.getValue() == Card.KING) {
-            return true;
-        } else
-            return false;
-    }
+    public boolean callAsPlayer2(Card card) { return true; }
 
     @Override
     public void feedbackAsPlayer1(Card card1, Card card2, boolean bet, boolean call) {
-        System.out.println("You are the Player 1.");
+        System.out.println("You are Player 1");
         System.out.println("Your card was " + card1.toString() + " and your opponent's card was " + card2.toString() + ".");
         if (betAsPlayer1(card1) && callAsPlayer2(card2)) {
             bet = true;
@@ -45,7 +28,7 @@ public class BestStrategyByAbongu2 implements PlayerStrategy {
 
     @Override
     public void feedbackAsPlayer2(Card card1, Card card2, boolean bet, boolean call) {
-        System.out.println("You are the Player 2.");
+        System.out.println("You are Player 2");
         System.out.println("Your card was " + card2.toString() + " and your opponent's card was " + card1.toString() + ".");
         if (betAsPlayer1(card1) && callAsPlayer2(card2)) {
             bet = true;
@@ -69,7 +52,6 @@ public class BestStrategyByAbongu2 implements PlayerStrategy {
 
     @Override
     public String getName() {
-        String name = "BestStrategyByAbongu2";
-        return name;
+        return "TheRandomPlayer";
     }
 }
